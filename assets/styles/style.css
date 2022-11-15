@@ -1,0 +1,68 @@
+body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #FF0099;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #493240, #FF0099);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #493240, #FF0099); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+#header{
+    background: #bdc3c7;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+#app{
+    width: 100%;
+    min-height: 80vh;
+    max-height: max-content;
+}
+
+.card > img {
+    width: 287px;
+    height: 12rem;
+    object-fit: cover;
+}
+
+.titulo-table{
+    font-size: 1.5rem;
+}
+
+.subtitle-table{
+    font-weight: 500;
+}
+
+.td-vacio{
+    padding: 1rem!important;
+}
+
+.nav-link:hover{
+    color: #d90368!important;
+}
+
+.icono-footer:hover, .boton-carta:hover{
+    color: #d90368!important;
+}
+
+#message{
+    resize: none;
+}
+
+#img-details{
+    object-fit: cover;
+}
+
+#contenedor-details{
+    width: 90%;
+    box-shadow: rgba(240, 46, 170, 0.4) -5px 5px, rgba(240, 46, 170, 0.3) -10px 10px, rgba(240, 46, 170, 0.2) -15px 15px, rgba(240, 46, 170, 0.1) -20px 20px, rgba(240, 46, 170, 0.05) -25px 25px;
+}
+
+#contenedor-details > img{
+    object-fit: cover;
+}
+
+#active{
+    color: #d90368 !important;;
+}
