@@ -1,11 +1,10 @@
 body{
-    min-height: 100vh;
+    min-height: 80vh;
     display: flex;
     flex-direction: column;
     background: #FF0099;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #493240, #FF0099);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #493240, #FF0099); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
 }
 
 #header{
@@ -14,9 +13,9 @@ body{
     background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-#app{
+#index, #upcomingEvents, #pastEvents, #contact{
     width: 100%;
-    min-height: 80vh;
+    min-height: 100vh;
     max-height: max-content;
 }
 
@@ -66,3 +65,67 @@ body{
 #active{
     color: #d90368 !important;;
 }
+
+/* 
+MEDIA QUERIES
+*/
+@media screen and (min-width: 767px){
+    #contenedor-tabla, #main-contacto{
+        gap: 3rem!important;
+    }
+
+    #contenedor-details{
+        width: 60%;
+    }
+}
+
+@media screen and (min-width: 1023px){
+    #checkbox-search{
+        flex-wrap: nowrap;
+        width: 85%;
+    }
+
+
+    #contenedor-contact{
+        width: 50%!important;
+    }
+
+    #contenedor-details{
+        width: 80%;
+        flex-direction: row!important;
+        padding: 2rem!important;
+        gap: 2rem!important;
+    }
+}
+
+@media screen and (min-width: 1439px){
+    #checkbox-search{
+        flex-wrap: nowrap;
+        width: 60%;
+    }
+
+    #contenedor-contact{
+        width: 40%!important;
+    }
+
+    #contenedor-details{
+        width: 70%;
+    }
+}
+
+@media screen and (min-width: 2559px){
+    #checkbox-search{
+        flex-wrap: nowrap;
+        width: 35%;
+        
+    }
+
+    #contenedor-contact{
+        width: 30%!important;
+    }
+
+    #contenedor-details{
+        width: 60%;
+    }
+}
+

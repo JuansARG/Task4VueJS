@@ -4,6 +4,8 @@ Vue.createApp({
             titulos: ['Home', 'Upcoming Events', 'Past Events', 'Contact', 'Stats'],
             logo: 'assets/img/Logo-Amazing-EventsGRANDE.png',
             eventos: [],
+            eventosProximos: [],
+            fechaActual: undefined,
             categorias: [],
             eventosFiltrados: [],
             cohorte: "Cohorte 37/38",
@@ -15,10 +17,10 @@ Vue.createApp({
         fetch('https://amazing-events.herokuapp.com/api/events')
             .then(respuesta => respuesta.json())
             .then(datos => {
-                this.eventosFiltrados = datos.events;
                 this.eventos = datos.events;
-                this.fechaActual = datos.currentDate;
-                this.extraerCategorias(); 
+                this.fechaActual = new Date(datos.currentDate);
+                this.filtrarPorFecha();
+                this.extraerCategorias();
             })
             .catch(e => null);
     },
@@ -28,16 +30,23 @@ Vue.createApp({
             this.categorias = [... new Set(this.eventos.filter(fn).map(fn))];
         },
         buscarPorInput() {
-            this.eventosFiltrados = this.eventos.filter(e => e.name.toLowerCase().trim().includes(this.inputBusqueda.toLowerCase().trim()));
+            this.eventosFiltrados = this.eventosProximos.filter(e => e.name.toLowerCase().trim().includes(this.inputBusqueda.toLowerCase().trim()));
         },
         buscarPorCategoria() {
-            this.eventosFiltrados = this.eventos.filter(e => this.checked.includes(e.category) || this.checked.length === 0);
+            this.eventosFiltrados = this.eventosProximos.filter(e => this.checked.includes(e.category) || this.checked.length === 0);
+        },
+        filtrarPorFecha(){
+            this.eventosProximos = this.eventos.filter(evento => {
+                let fechaEvento = new Date(evento.date);
+                return fechaEvento < this.fechaActual;
+            })
         }
+
     },
     computed:{
         filtrar(){
-            let eventosFiltradosPorCategoria = this.eventos.filter(e => this.checked.includes(e.category) || this.checked.length === 0);
+            let eventosFiltradosPorCategoria = this.eventosProximos.filter(e => this.checked.includes(e.category) || this.checked.length === 0);
             this.eventosFiltrados = eventosFiltradosPorCategoria.filter(e => e.name.toLowerCase().trim().includes(this.inputBusqueda.toLowerCase().trim()));
         }
     }
-}).mount('#index');
+}).mount('#pastEvents');
