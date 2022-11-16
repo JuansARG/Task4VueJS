@@ -73,7 +73,7 @@
             <div class="container d-flex flex-wrap gap-2 justify-content-start ps-4" id="contenedor-checkbox">
                 <!--@change="buscarPorCategoria"-->
                 <div class="form-check" v-for="categoria of categorias">
-                    <input class="form-check-input" type="checkbox" :id="categoria" :name="categoria" :value="categoria" v-model="checked">
+                    <input class="form-check-input" type="checkbox" :id="categoria" :value="categoria" v-model="checked">
                     <label class="form-check-label" :for="categoria">{{categoria}}</label>
                   </div>
             </div>

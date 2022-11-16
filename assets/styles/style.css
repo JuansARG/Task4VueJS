@@ -13,7 +13,7 @@ body{
     background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-#index, #upcomingEvents, #pastEvents, #contact{
+#index, #upcomingEvents, #pastEvents, #contact, #stats{
     width: 100%;
     min-height: 100vh;
     max-height: max-content;

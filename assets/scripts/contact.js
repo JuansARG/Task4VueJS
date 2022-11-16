@@ -23,6 +23,5 @@ Vue.createApp({
                                 </div>
                                 <button type="submit" class="btn btn-secondary align-self-end w-40 boton-carta">Submit</button>
                                 </form>`;
-        console.log(this.formulario)
     }
 }).mount('#contact');
