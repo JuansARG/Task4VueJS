@@ -14,13 +14,11 @@ Vue.createApp({
             eventosProximos: [],
             eventosPasados: [],
             eventosR: [],
-            eventosProximosR: [],
-            eventosPasadosR: [],
             eventoMayorAsistencia: undefined,
             eventoMenorAsistencia: undefined,
             eventoMayorCapacidad: undefined,
-            estadisticasProximosPorCategoria: [],
-            estadisticasPasadasPorCategoria: []
+            estadisticasPorCategoriaEventosProximos: [],
+            estadisticasPorCategoriaEventosPasados: []
         }
     },
     created() {
@@ -28,23 +26,29 @@ Vue.createApp({
             .then(respuesta => respuesta.json())
             .then(datos => {
                 this.eventos = datos.events;
+                this.eventosR = this.resumirEventos(this.eventos);
+                
                 this.fechaActual = new Date(datos.currentDate);
                 this.filtrarEventosPorFecha();
+
                 this.categorias = this.extraerCategorias(this.eventos);
-                this.eventosR = this.resumirEventos(this.eventos);
-                this.eventosProximosR = this.resumirEventos(this.eventosProximos);
-                this.eventosPasadosR = this.resumirEventos(this.eventosPasados);
-                this.categoriasEventosProximos = this.extraerCategorias(this.eventosProximosR);
-                this.categoriasEventosPasados = this.extraerCategorias(this.eventosPasadosR);
-                this.ordenarPor(this.eventosPasadosR, "percentageOfAttendance");
-                console.table(this.eventosPasadosR);
-                this.eventoMayorAsistencia = this.eventosPasadosR[0].name;
-                this.eventoMenorAsistencia = this.eventosPasadosR[this.eventosPasadosR.length - 1].name;
-                console.log(this.eventoMayorAsistencia);
-                console.log(this.eventoMenorAsistencia);
-                this.ordenarPor(this.eventosPasadosR, "capacity");
-                this.eventoMayorCapacidad = this.eventosPasadosR[0].name;
-                console.log(this.eventoMayorCapacidad);
+                this.categoriasEventosProximos = this.extraerCategorias(this.eventosProximos);
+                this.categoriasEventosPasados = this.extraerCategorias(this.eventosPasados);
+                
+                this.ordenarPor(this.eventosPasados, "percentageOfAttendance");
+                this.eventoMayorAsistencia = this.eventosPasados[0].name;
+                this.eventoMenorAsistencia = this.eventosPasados[this.eventosPasados.length - 1].name;
+                
+                
+
+                this.ordenarPor(this.eventosPasados, "capacity");
+                this.eventoMayorCapacidad = this.eventosPasados[0].name;
+                
+                this.estadisticasPorCategoriaEventosProximos = this.categoriasEventosProximos.map(c => this.crearEstadisticasPorCategoria(this.eventosProximos, c));
+                this.estadisticasPorCategoriaEventosPasados = this.categoriasEventosPasados.map(c => this.crearEstadisticasPorCategoria(this.eventosPasados, c));
+                this.ordenarPor(this.estadisticasPorCategoriaEventosProximos, 'revenues');
+                this.ordenarPor(this.estadisticasPorCategoriaEventosPasados, 'revenues');
+
 
                 
 
@@ -63,11 +67,13 @@ Vue.createApp({
             let fechaEvento = new Date(evento.date);
             return fechaEvento > this.fechaActual;
             });
+            this.eventosProximos = this.resumirEventos(this.eventosProximos);
            
             this.eventosPasados = this.eventos.filter(evento => {
                 let fechaEvento = new Date(evento.date);
                 return fechaEvento < this.fechaActual;
             });
+            this.eventosPasados = this.resumirEventos(this.eventosPasados);
         },
         resumirEventos(eventosParaIterar){
             let r = eventosParaIterar.map( evento => {
@@ -99,6 +105,22 @@ Vue.createApp({
         },
         ordenarPor(eventos, propiedad) {
             eventos.sort((a, b) => b[propiedad] - a[propiedad]);
+        },
+        crearEstadisticasPorCategoria(eventos, categoria) {
+            let eventosFiltrados = eventos.filter(e => categoria.includes(e.category));
+            let c = {
+                category: categoria,
+                revenues: eventosFiltrados.reduce((acc, e) => acc + this.ganancias(e), 0),
+                percentageOfAttendance: ((eventosFiltrados.reduce((acc, e) => acc + e.percentageOfAttendance, 0)) / eventosFiltrados.length).toFixed(1)
+            }
+            return c;
+        },
+        ganancias(evento) {
+            if (evento.assistance === undefined) {
+                return (evento.price * evento.estimate);
+            } else {
+                return (evento.price * evento.assistance);
+            }
         },
         
 

@@ -17,10 +17,11 @@
 </head>
 
 <body>
-    <div id="index" class="d-flex flex-column">
+    <div id="index">
 
-        <!-- NAV-BAR-->
-        <nav class="navbar navbar-expand-lg" id="header">
+       <header>
+         <!-- NAV-BAR-->
+         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
             <img class="my-4 ms-2" :src="logo" alt="Amazing Events" width="200"
                 height="40" title="Amazing Events">
@@ -49,55 +50,54 @@
             </div>
             </div>
         </nav>
-
         <!--TITULO PRINCIPAL-->
         <div class="row-1">
             <h1 class="py-3 bg-dark text-light m-0 text-center">{{titulos[0]}}</h1>
         </div>
+       </header>
 
-        <!--CHECKBOXS && SEARCH-->
-
-        <div id="checkbox-search"
-            class="container form-check py-2 d-flex flex-column gap-4 align-items-center justify-content-center justify-content-lg-start">
-            
-            <!--SEARCH-->
-            <div class="container" id="contenedor-busqueda">
-                <div class="d-flex mx-auto px-2" role="search">
-                    <input class="form-control me-2" type="text" placeholder="Name of the event..." v-model="inputBusqueda">
-                    <button class="btn btn-dark" type="button" @click="buscarPorInput">Search</button>
-                    
+        <main>
+            <!--CHECKBOXS && SEARCH-->
+            <div id="checkbox-search"
+                class="container form-check py-2 d-flex flex-column gap-4 align-items-center justify-content-center justify-content-lg-start">
+                <!--SEARCH-->
+                <div class="container" id="contenedor-busqueda">
+                    <div class="d-flex mx-auto px-2" role="search">
+                        <input class="form-control me-2" type="text" placeholder="Name of the event..." v-model="inputBusqueda">
+                        <button class="btn btn-dark" type="button" @click="buscarPorInput">Search</button>
+                    </div>
                 </div>
-            </div>
-            {{filtrar}}
-            <!--CHECKBOXS-->
-            <div class="container d-flex flex-wrap gap-2 justify-content-start ps-4" id="contenedor-checkbox">
-                <!--@change="buscarPorCategoria"-->
-                <div class="form-check" v-for="categoria of categorias">
-                    <input class="form-check-input" type="checkbox" :id="categoria" :value="categoria" v-model="checked">
-                    <label class="form-check-label" :for="categoria">{{categoria}}</label>
-                  </div>
-            </div>
-
-        </div>
-
-        <!--CONTENERDOR DE CARTAS-->
-        <div class="container d-flex flex-wrap justify-content-center p-2 gap-3" id="contenedor-cartas" >
-            <!--CARTA-->
-            <div class="card shadow-lg text-bg-dark" style="width: 18rem" v-for="evento of eventosFiltrados">
-                <img :src="evento.image" class="card-img-top" :alt="evento.name" :title="evento.name">
-                <div class="card-body d-flex flex-column">
-                    <h5 class="card-title fs-3">{{evento.name}}</h5>
-                    <p class="card-text">{{evento.description}}</p>
-                    <div class="d-flex justify-content-between mt-auto align-items-center">
-                        <p class="m-0 fs-4 fw-bold">Price: ${{evento.price}}</p>
-                        <a :href="'./details.html?id=' + evento._id" class="btn btn-secondary mt-auto w-30 boton-carta">See more...</a>
+                {{filtrar}}
+                <!--CHECKBOXS-->
+                <div class="container d-flex flex-wrap gap-2 justify-content-start ps-4" id="contenedor-checkbox">
+                    <!--@change="buscarPorCategoria"-->
+                    <div class="form-check" v-for="categoria of categorias">
+                        <input class="form-check-input" type="checkbox" :id="categoria" :value="categoria" v-model="checked">
+                        <label class="form-check-label" :for="categoria">{{categoria}}</label>
                     </div>
                 </div>
             </div>
-        </div>
+        
+            <!--CONTENERDOR DE CARTAS-->
+            <div class="container d-flex flex-wrap justify-content-center p-2 gap-3" id="contenedor-cartas">
+                <!--CARTA-->
+                <div class="card shadow-lg text-bg-dark" style="width: 18rem" v-for="evento of eventosFiltrados">
+                    <img :src="evento.image" class="card-img-top" :alt="evento.name" :title="evento.name">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title fs-3">{{evento.name}}</h5>
+                        <p class="card-text">{{evento.description}}</p>
+                        <div class="d-flex justify-content-between mt-auto align-items-center">
+                            <p class="m-0 fs-4 fw-bold">Price: ${{evento.price}}</p>
+                            <a :href="'./details.html?id=' + evento._id" class="btn btn-secondary mt-auto w-30 boton-carta">See
+                                more...</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
 
         <!--FOOTER-->
-        <div class="d-flex w-100 bg-dark align-items-center justify-content-around mt-auto">
+        <footer class="d-flex w-100 bg-dark align-items-center justify-content-around mt-auto">
             <div class=" d-flex gap-4">
               <!--ICONOS-->
               <a class="text-light" href="https://www.instagram.com"><svg class="icono-footer"
@@ -117,7 +117,7 @@
                 </svg></a>
             </div>
             <h4 class="text-light m-0 py-4">{{cohorte}}</h4>
-        </div>
+        </footer>
     </div>
 
     <!--bootstrapJS-->

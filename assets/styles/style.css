@@ -1,5 +1,11 @@
+*{
+    box-sizing: border-box!important;
+    margin: 0;
+    padding: 0;
+}
+
 body{
-    min-height: 80vh;
+    min-height: 70vh;
     display: flex;
     flex-direction: column;
     background: #FF0099;  /* fallback for old browsers */
@@ -7,17 +13,17 @@ body{
     background: linear-gradient(to right, #493240, #FF0099); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-#header{
+header{
     background: #bdc3c7;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-#index, #upcomingEvents, #pastEvents, #contact, #stats{
+main{
     width: 100%;
-    min-height: 100vh;
-    max-height: max-content;
+    min-height: 77.6vh;
 }
+
 
 .card > img {
     width: 287px;
@@ -25,16 +31,12 @@ body{
     object-fit: cover;
 }
 
-.titulo-table{
+.titulo-tabla{
     font-size: 1.5rem;
 }
 
-.subtitle-table{
+.subtitulo-table{
     font-weight: 500;
-}
-
-.td-vacio{
-    padding: 1rem!important;
 }
 
 .nav-link:hover{
@@ -69,13 +71,29 @@ body{
 /* 
 MEDIA QUERIES
 */
+@media screen and (min-width: 374px){
+    main{
+        min-height: 77.5vh;
+    }
+}
+
+@media screen and (min-width: 424px){
+    main{
+        min-height: 77.4vh;
+    }
+}
+
 @media screen and (min-width: 767px){
-    #contenedor-tabla, #main-contacto{
+    #main-contacto{
         gap: 3rem!important;
     }
 
     #contenedor-details{
         width: 60%;
+    }
+   
+    main{
+        min-height: 76.7vh;
     }
 }
 
@@ -84,7 +102,6 @@ MEDIA QUERIES
         flex-wrap: nowrap;
         width: 85%;
     }
-
 
     #contenedor-contact{
         width: 50%!important;
@@ -95,6 +112,10 @@ MEDIA QUERIES
         flex-direction: row!important;
         padding: 2rem!important;
         gap: 2rem!important;
+    }
+
+    main{
+        min-height: 76.2vh;
     }
 }
 
@@ -111,6 +132,11 @@ MEDIA QUERIES
     #contenedor-details{
         width: 70%;
     }
+
+    main{
+        min-height: 75.85vh;
+    }
+
 }
 
 @media screen and (min-width: 2559px){
