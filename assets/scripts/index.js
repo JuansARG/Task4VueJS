@@ -12,17 +12,22 @@ Vue.createApp({
         }
     },
     created() {
-        fetch('https://amazing-events.herokuapp.com/api/events')
+        this.cargarDatos();
+        console.table(this.eventos)
+    },
+    methods: {
+        cargarDatos(){
+            fetch('https://amazing-events.herokuapp.com/api/events')
             .then(respuesta => respuesta.json())
             .then(datos => {
                 this.eventosFiltrados = datos.events;
-                this.eventos = datos.events;
+                this.eventos = this.eventosFiltrados;
+                this.extraerCategorias();
                 this.fechaActual = datos.currentDate;
-                this.extraerCategorias(); 
+                
             })
-            .catch(e => null);
-    },
-    methods: {
+            .catch(e => console.log(e));
+        },
         extraerCategorias() {
             let fn = e => e.category;
             this.categorias = [... new Set(this.eventos.filter(fn).map(fn))];

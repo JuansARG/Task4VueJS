@@ -20,35 +20,34 @@
     <div id="pastEvents"">
 
         <header>
-            <!-- NAV-BAR-->
-        <nav class=" navbar navbar-expand-lg" id="header">
-        <div class="container-fluid">
-            <img class="my-4 ms-2" :src="logo" alt="Amazing Events" width="200" height="40" title="Amazing Events">
-            <button class="navbar-toggler bg-transparent" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item ps-2">
-                        <a class="nav-link text-dark fs-4" href="index.html">{{titulos[0]}}</a>
-                    </li>
-                    <li class="nav-item ps-2">
-                        <a class="nav-link text-dark fs-4" href="upcoming-events.html">{{titulos[1]}}</a>
-                    </li>
-                    <li class="nav-item ps-2">
-                        <a class="nav-link text-dark fs-4" href="#" id="active">{{titulos[2]}}</a>
-                    </li>
-                    <li class="nav-item ps-2">
-                        <a class="nav-link text-dark fs-4" href="contact.html">{{titulos[3]}}</a>
-                    </li>
-                    <li class="nav-item px-2">
-                        <a class="nav-link text-dark fs-4" href="stats.html">{{titulos[4]}}</a>
-                    </li>
-                </ul>
+        <!-- NAV-BAR-->
+        <nav class="navbar navbar-expand-lg p-0">
+            <div class="container-fluid py-4 ps-4 pe-2">
+                <img :src="logo" alt="Amazing Events" width="200" height="40" title="Amazing Events">
+                <button class="navbar-toggler bg-transparent" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item ps-2">
+                            <a class="nav-link text-dark fs-4" href="index.html">{{titulos[0]}}</a>
+                        </li>
+                        <li class="nav-item ps-2">
+                            <a class="nav-link text-dark fs-4" href="upcoming-events.html">{{titulos[1]}}</a>
+                        </li>
+                        <li class="nav-item ps-2">
+                            <a class="nav-link text-dark fs-4" href="#" id="active">{{titulos[2]}}</a>
+                        </li>
+                        <li class="nav-item ps-2">
+                            <a class="nav-link text-dark fs-4" href="contact.html">{{titulos[3]}}</a>
+                        </li>
+                        <li class="nav-item ps-2">
+                            <a class="nav-link text-dark fs-4" href="stats.html">{{titulos[4]}}</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
         </nav>
         <!--TITULO PRINCIPAL-->
         <div class="row-1">
@@ -56,31 +55,25 @@
         </div>
         </header>
 
-        <main>
+        <main class="d-flex flex-column gap-3">
             {{filtrar}}
             <!--CHECKBOXS && SEARCH-->
-            <div id="checkbox-search"
-                class="container form-check py-2 d-flex flex-column gap-4 align-items-center justify-content-center justify-content-lg-start">
+            <div id="checkbox-search" class="container form-check pt-3 d-flex flex-column gap-3 mb-0">
                 <!--SEARCH-->
                 <div class="container" id="contenedor-busqueda">
-                    <div class="d-flex mx-auto px-2" role="search">
-                        <input class="form-control me-2" type="text" placeholder="Name of the event..."
-                            v-model="inputBusqueda">
-                        <button class="btn btn-dark" type="button" @click="buscarPorInput">Search</button>
-                    </div>
+                    <input class="form-control me-2 w-100" type="text" placeholder="Name of the event..." v-model="inputBusqueda">
                 </div>
                 <!--CHECKBOXS-->
-                <div class="container d-flex flex-wrap gap-2 justify-content-start ps-4" id="contenedor-checkbox">
+                <div class="container d-flex flex-column gap-2 justify-content-start ps-3" id="contenedor-checkbox">
                     <!--@change="buscarPorCategoria"-->
-                    <div class="form-check" v-for="categoria of categorias">
-                        <input class="form-check-input" type="checkbox" :id="categoria" :name="categoria"
-                            :value="categoria" v-model="checked">
+                    <div class="form-check m-0" v-for="categoria of categorias">
+                        <input class="form-check-input" type="checkbox" :id="categoria" :value="categoria" v-model="checked">
                         <label class="form-check-label" :for="categoria">{{categoria}}</label>
                     </div>
                 </div>
             </div>
             <!--CONTENERDOR DE CARTAS-->
-            <div class="container d-flex flex-wrap justify-content-center p-2 gap-3" id="contenedor-cartas">
+            <div class="container d-flex flex-wrap justify-content-center gap-3 pb-3" id="contenedor-cartas">
                 <!--CARTA-->
                 <div class="card shadow-lg text-bg-dark" style="width: 18rem" v-for="evento of eventosFiltrados">
                     <img :src="evento.image" class="card-img-top" :alt="evento.name" :title="evento.name">
@@ -89,12 +82,13 @@
                         <p class="card-text">{{evento.description}}</p>
                         <div class="d-flex justify-content-between mt-auto align-items-center">
                             <p class="m-0 fs-4 fw-bold">Price: ${{evento.price}}</p>
-                            <a :href="'./details.html?id=' + evento._id"
-                                class="btn btn-secondary mt-auto w-30 boton-carta">Seemore...</a>
+                            <a :href="'./details.html?id=' + evento._id" class="btn btn-secondary mt-auto w-30 boton-carta">Seemore...</a>
                         </div>
                     </div>
                 </div>
             </div>
+        
+            <p class="text-center fw-bold display-4 align-self-center" v-if="eventosFiltrados.length ===0">0 RESULTS.</p>
         </main>
 
         <footer class="d-flex w-100 bg-dark align-items-center justify-content-around mt-auto">

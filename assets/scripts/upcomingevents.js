@@ -14,17 +14,21 @@ Vue.createApp({
         }
     },
     created() {
-        fetch('https://amazing-events.herokuapp.com/api/events')
+        this.cargarDatos();
+    },
+    methods: {
+        cargarDatos(){
+            fetch('https://amazing-events.herokuapp.com/api/events')
             .then(respuesta => respuesta.json())
             .then(datos => {
                 this.eventos = datos.events;
+                this.extraerCategorias();
                 this.fechaActual = new Date(datos.currentDate);
                 this.filtrarPorFecha();
-                this.extraerCategorias();
+                this.eventosFiltrados = this.eventosProximos;
             })
-            .catch(e => null);
-    },
-    methods: {
+            .catch(e => console.log(e));
+        },
         extraerCategorias() {
             let fn = e => e.category;
             this.categorias = [... new Set(this.eventos.filter(fn).map(fn))];
@@ -41,7 +45,6 @@ Vue.createApp({
                 return fechaEvento > this.fechaActual;
             })
         }
-
     },
     computed:{
         filtrar(){

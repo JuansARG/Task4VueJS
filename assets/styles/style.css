@@ -5,7 +5,7 @@
 }
 
 body{
-    min-height: 70vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     background: #FF0099;  /* fallback for old browsers */
@@ -21,7 +21,7 @@ header{
 
 main{
     width: 100%;
-    min-height: 77.6vh;
+    min-height: 79.1vh;
 }
 
 
@@ -73,13 +73,18 @@ MEDIA QUERIES
 */
 @media screen and (min-width: 374px){
     main{
-        min-height: 77.5vh;
+        min-height: 78.9vh;
     }
 }
 
 @media screen and (min-width: 424px){
     main{
-        min-height: 77.4vh;
+        min-height: 78.7vh;
+    }
+    #contenedor-checkbox{
+        flex-direction: row!important;
+        justify-content: space-between!important;
+        flex-wrap: wrap;
     }
 }
 
@@ -91,10 +96,14 @@ MEDIA QUERIES
     #contenedor-details{
         width: 60%;
     }
-   
     main{
-        min-height: 76.7vh;
+        min-height: 78.2vh;
     }
+
+    #contenedor-tablas{
+        width: 85%;
+    }
+    
 }
 
 @media screen and (min-width: 1023px){
@@ -115,7 +124,7 @@ MEDIA QUERIES
     }
 
     main{
-        min-height: 76.2vh;
+        min-height: 76.65vh;
     }
 }
 
@@ -134,7 +143,11 @@ MEDIA QUERIES
     }
 
     main{
-        min-height: 75.85vh;
+        min-height: 76.2vh;
+    }
+
+    #contenedor-tablas{
+        width: 70%;
     }
 
 }

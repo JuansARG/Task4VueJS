@@ -18,15 +18,14 @@
 
 <body>
     <div id="stats">
+
         <header>
-            <!-- NAV-BAR-->
-            <nav class="navbar navbar-expand-lg">
-                <div class="container-fluid">
-                    <img class="my-4 ms-2" :src="logo" alt="Amazing Events" width="200" height="40"
-                        title="Amazing Events">
+             <!-- NAV-BAR-->
+             <nav class="navbar navbar-expand-lg p-0">
+                <div class="container-fluid py-4 ps-4 pe-2">
+                    <img :src="logo" alt="Amazing Events" width="200" height="40" title="Amazing Events">
                     <button class="navbar-toggler bg-transparent" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                        aria-label="Toggle navigation">
+                        data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
@@ -43,7 +42,7 @@
                             <li class="nav-item ps-2">
                                 <a class="nav-link text-dark fs-4" href="contact.html">{{titulos[3]}}</a>
                             </li>
-                            <li class="nav-item px-2">
+                            <li class="nav-item ps-2">
                                 <a class="nav-link text-dark fs-4" href="#" id="active">{{titulos[4]}}</a>
                             </li>
                         </ul>
@@ -51,50 +50,49 @@
                 </div>
             </nav>
             <!--TITULO PRINCIPAL-->
-            <div class="row-1">
+            <div>
                 <h1 class="py-3 bg-dark text-light m-0 text-center">{{titulos[4]}}</h1>
             </div>
         </header>
 
-        <main class="d-flex justify-content-center gap-2 pt-4">
+        <main class="d-flex justify-content-center gap-2 pt-4 px-2">
             <!--TABLAS-->
-            <div>
+            <div id="contenedor-tablas">
                 <!--TABLA1-->
-                <div class="table-responsive-lg">
+                <div class="table-responsive">
                     <table class="table table-dark table-striped table-bordered border-dark table-hover">
                         <thead>
                             <tr>
-                                <th colspan="3" rowspan="1" class="titulo-tabla">{{titulosTablas[0]}}</th>
+                                <th colspan="3" rowspan="1" class="fs-3">{{titulosTablas[0]}}</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="subtitulo-tabla">{{titulosTablas[1]}}</td>
-                                <td class="subtitulo-tabla">{{titulosTablas[2]}}</td>
-                                <td class="subtitulo-tabla">{{titulosTablas[3]}}</td>
+                                <td class="fw-bold">{{titulosTablas[1]}}</td>
+                                <td class="fw-bold">{{titulosTablas[2]}}</td>
+                                <td class="fw-bold">{{titulosTablas[3]}}</td>
                             </tr>
                             <tr>
                                 <td>{{eventoMayorAsistencia}}</td>
                                 <td>{{eventoMenorAsistencia}}</td>
                                 <td>{{eventoMayorCapacidad}}</td>
                             </tr>
-
                         </tbody>
                     </table>
                 </div>
                 <!--TABLA2-->
-                <div class="table-responsive-lg">
+                <div class="table-responsive">
                     <table class="table table-dark table-striped table-bordered border-dark table-hover">
                         <thead>
                             <tr>
-                                <th colspan="3" rowspan="1" class="titulo-tabla">{{titulosTablas[4]}}</th>
+                                <th colspan="3" rowspan="1" class="fs-3">{{titulosTablas[4]}}</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="subtitulo-table">{{subtitulosTablas[0]}}</td>
-                                <td class="subtitulo-table">{{subtitulosTablas[1]}}</td>
-                                <td class="subtitulo-table">{{subtitulosTablas[2]}}</td>
+                                <td class="fw-bold">{{subtitulosTablas[0]}}</td>
+                                <td class="fw-bold">{{subtitulosTablas[1]}}</td>
+                                <td class="fw-bold">{{subtitulosTablas[2]}}</td>
                             </tr>
                             <template v-for="e in estadisticasPorCategoriaEventosProximos">
                             <tr>
@@ -111,14 +109,14 @@
                     <table class="table table-dark table-striped table-bordered border-dark table-hover">
                         <thead>
                             <tr>
-                                <th colspan="3" rowspan="1" class="titulo-tabla">{{titulosTablas[5]}}</th>
+                                <th colspan="3" rowspan="1" class="fs-3">{{titulosTablas[5]}}</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="subtitulo-tabla">{{subtitulosTablas[0]}}</td>
-                                <td class="subtitulo-tabla">{{subtitulosTablas[1]}}</td>
-                                <td class="subtitulo-tabla">{{subtitulosTablas[2]}}</td>
+                                <td class="fw-bold">{{subtitulosTablas[0]}}</td>
+                                <td class="fw-bold">{{subtitulosTablas[1]}}</td>
+                                <td class="fw-bold">{{subtitulosTablas[2]}}</td>
                             </tr>
                             <template v-for="e in estadisticasPorCategoriaEventosPasados">
                             <tr>
