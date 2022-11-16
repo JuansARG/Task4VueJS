@@ -13,7 +13,7 @@ Vue.createApp({
     },
     created() {
         this.cargarDatos();
-        console.table(this.eventos)
+
     },
     methods: {
         cargarDatos(){
@@ -24,7 +24,6 @@ Vue.createApp({
                 this.eventos = this.eventosFiltrados;
                 this.extraerCategorias();
                 this.fechaActual = datos.currentDate;
-                
             })
             .catch(e => console.log(e));
         },

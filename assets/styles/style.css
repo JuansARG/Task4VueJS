@@ -31,14 +31,6 @@ main{
     object-fit: cover;
 }
 
-.titulo-tabla{
-    font-size: 1.5rem;
-}
-
-.subtitulo-table{
-    font-weight: 500;
-}
-
 .nav-link:hover{
     color: #d90368!important;
 }
@@ -119,7 +111,7 @@ MEDIA QUERIES
     #contenedor-details{
         width: 80%;
         flex-direction: row!important;
-        padding: 2rem!important;
+        padding: 1.2rem!important;
         gap: 2rem!important;
     }
 

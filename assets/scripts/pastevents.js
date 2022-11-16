@@ -45,7 +45,6 @@ Vue.createApp({
                 return fechaEvento < this.fechaActual;
             })
         }
-
     },
     computed:{
         filtrar(){

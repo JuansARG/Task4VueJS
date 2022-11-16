@@ -22,41 +22,39 @@ Vue.createApp({
         }
     },
     created() {
-        fetch('https://amazing-events.herokuapp.com/api/events')
-            .then(respuesta => respuesta.json())
-            .then(datos => {
-                this.eventos = datos.events;
-                this.eventosR = this.resumirEventos(this.eventos);
-                
-                this.fechaActual = new Date(datos.currentDate);
-                this.filtrarEventosPorFecha();
-
-                this.categorias = this.extraerCategorias(this.eventos);
-                this.categoriasEventosProximos = this.extraerCategorias(this.eventosProximos);
-                this.categoriasEventosPasados = this.extraerCategorias(this.eventosPasados);
-                
-                this.ordenarPor(this.eventosPasados, "percentageOfAttendance");
-                this.eventoMayorAsistencia = this.eventosPasados[0].name;
-                this.eventoMenorAsistencia = this.eventosPasados[this.eventosPasados.length - 1].name;
-                
-                
-
-                this.ordenarPor(this.eventosPasados, "capacity");
-                this.eventoMayorCapacidad = this.eventosPasados[0].name;
-                
-                this.estadisticasPorCategoriaEventosProximos = this.categoriasEventosProximos.map(c => this.crearEstadisticasPorCategoria(this.eventosProximos, c));
-                this.estadisticasPorCategoriaEventosPasados = this.categoriasEventosPasados.map(c => this.crearEstadisticasPorCategoria(this.eventosPasados, c));
-                this.ordenarPor(this.estadisticasPorCategoriaEventosProximos, 'revenues');
-                this.ordenarPor(this.estadisticasPorCategoriaEventosPasados, 'revenues');
-
-
-                
-
-                
-            })
-            .catch(e => console.log(e));
+        this.cargarDatos();
     },
     methods:{
+        cargarDatos(){
+            fetch('https://amazing-events.herokuapp.com/api/events')
+                .then(respuesta => respuesta.json())
+                .then(datos => {
+                    this.eventos = datos.events;
+                    this.fechaActual = new Date(datos.currentDate);
+                    this.eventosR = this.resumirEventos(this.eventos);
+                    this.filtrarEventosPorFecha();
+
+                    this.categorias = this.extraerCategorias(this.eventos);
+                    this.categoriasEventosProximos = this.extraerCategorias(this.eventosProximos);
+                    this.categoriasEventosPasados = this.extraerCategorias(this.eventosPasados);
+
+                    this.ordenarPor(this.eventosPasados, "percentageOfAttendance");
+                    this.eventoMayorAsistencia = this.eventosPasados[0].name;
+                    this.eventoMenorAsistencia = this.eventosPasados[this.eventosPasados.length - 1].name;
+
+                    this.ordenarPor(this.eventos, "capacity");
+                    this.eventoMayorCapacidad = this.eventos[0].name;
+
+                    this.estadisticasPorCategoriaEventosProximos = this.categoriasEventosProximos.map(c => this.crearEstadisticasPorCategoria(this.eventosProximos, c));
+                    this.estadisticasPorCategoriaEventosPasados = this.categoriasEventosPasados.map(c => this.crearEstadisticasPorCategoria(this.eventosPasados, c));
+                    this.ordenarPor(this.estadisticasPorCategoriaEventosProximos, 'revenues');
+                    this.ordenarPor(this.estadisticasPorCategoriaEventosPasados, 'revenues');
+
+                    console.table(this.eventosProximos);
+                    console.table(this.eventosPasados);
+                })
+                .catch(e => console.log(e));
+        },
         extraerCategorias(eventos) {
             let fn = e => e.category;
             let categorias = [... new Set(eventos.filter(fn).map(fn))];
@@ -121,8 +119,6 @@ Vue.createApp({
             } else {
                 return (evento.price * evento.assistance);
             }
-        },
-        
-
+        }
     }
 }).mount('#stats');
