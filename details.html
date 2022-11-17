@@ -59,7 +59,7 @@
             <div class="container bg-dark p-0 d-flex flex-column gap-2 p-2 w-90 border border-5" id="contenedor-details">
                 <img :src="img" :alt="nombre" :title="nombre" class="w-100">
                 <div>
-                    <h2 class="text-light text-center fs-1 pb-2" v-if="nombre != undefined"> {{nombre}}</h2>
+                    <h2 class="text-light text-center fs-1 pb-4 m-0" v-if="nombre != undefined"> {{nombre}}</h2>
                     <p class="text-light fs-4 ps-1 pb-2 m-0" v-if="descripcion != undefined">{{descripcion}}</p>
                     <p class="text-light fs-4 ps-1 pb-2 m-0" v-if="date != undefined">Date: {{date}}.</p>
                     <p class="text-light fs-4 ps-1 pb-2 m-0" v-if="lugar != undefined">Place: {{lugar}}.</p>
