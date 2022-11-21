@@ -7,25 +7,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--FAVICON-->
     <link rel="shortcut icon" href="assets/img/Logo-Amazing-Events.png" type="image/x-icon">
-    <!--bootstrapCSS-->
+    <!--LINK BOOTSTRAP -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <!--miCSS-->
+    <!--LINK CSS -->
     <link rel="stylesheet" href="assets/styles/style.css">
 
     <title>Amazing Events</title>
 </head>
 
 <body>
-    <div id="contact" class="p-0 m-0">
-
+    <div id="details">
         <header>
             <!-- NAV-BAR-->
             <nav class="navbar navbar-expand-lg p-0">
                 <div class="container-fluid py-4 ps-4 pe-2">
                     <img :src="logo" alt="Amazing Events" width="200" height="40" title="Amazing Events">
                     <button class="navbar-toggler bg-transparent" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                        aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
@@ -40,7 +40,7 @@
                                 <a class="nav-link text-dark fs-4" href="past-events.html">{{titulos[2]}}</a>
                             </li>
                             <li class="nav-item ps-2">
-                                <a class="nav-link text-dark fs-4" href="#" id="active">{{titulos[3]}}</a>
+                                <a class="nav-link text-dark fs-4" href="contact.html">{{titulos[3]}}</a>
                             </li>
                             <li class="nav-item ps-2">
                                 <a class="nav-link text-dark fs-4" href="stats.html">{{titulos[4]}}</a>
@@ -51,19 +51,28 @@
             </nav>
             <!--TITULO PRINCIPAL-->
             <div>
-                <h1 class="py-3 bg-dark text-light m-0 text-center">{{titulos[3]}}</h1>
+                <h1 class="py-3 bg-dark text-light m-0 text-center">{{nombre}}</h1>
             </div>
         </header>
-
-        <main class="d-flex align-items-start justify-content-center pt-4">
-            
-            <!--FORMULARIO-->
-            <div class="container text-bg-dark p-3 rounded w-75 m-0" id="contenedor-contact"
-                v-html="formulario">
+        
+        <main class="d-flex align-items-center justify-content-center ">
+            <div class="container bg-dark p-0 d-flex flex-column gap-2 p-2 w-90 border border-5" id="contenedor-details">
+                <img :src="img" :alt="nombre" :title="nombre" class="w-100">
+                <div>
+                    <h2 class="text-light text-center fs-1 pb-4 m-0" v-if="nombre != undefined"> {{nombre}}</h2>
+                    <p class="text-light fs-4 ps-1 pb-2 m-0" v-if="descripcion != undefined">{{descripcion}}</p>
+                    <p class="text-light fs-4 ps-1 pb-2 m-0" v-if="date != undefined">Date: {{date}}.</p>
+                    <p class="text-light fs-4 ps-1 pb-2 m-0" v-if="lugar != undefined">Place: {{lugar}}.</p>
+                    <p class="text-light fs-4 ps-1 pb-2 m-0" v-if="categoria != undefined">Category: {{categoria}}.</p>
+                    <p class="text-light fs-4 ps-1 pb-2 m-0" v-if="capacidad != undefined">Capacity: {{capacidad}} persons.</p>
+                    <p class="text-light fs-4 ps-1 pb-2 m-0" v-if="asistencia != undefined">Assistance: {{asistencia}} persons.</p>
+                    <p class="text-light fs-4 ps-1 pb-2 m-0" v-if="estimado != undefined">Estimate: {{estimado}} persons.</p>
+                    <p class="text-light fs-4 ps-1 pb-2 m-0" v-if="precio != undefined">Price: ${{precio}}</p>
+                </div>
             </div>
-
+        
         </main>
-
+        
         <footer class="d-flex w-100 bg-dark align-items-center justify-content-around mt-auto">
             <div class=" d-flex gap-4">
                 <!--ICONOS-->
@@ -87,6 +96,7 @@
         </footer>
 
     </div>
+
     <!--bootstrapJS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
@@ -94,7 +104,6 @@
     <!--vueJS-->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <!--miJS-->
-    <script src="assets/scripts/contact.js"></script>
+    <script src="assets/scripts/details.js"></script>
 </body>
-
 </html>

@@ -1,5 +1,11 @@
+*{
+    box-sizing: border-box!important;
+    margin: 0;
+    padding: 0;
+}
+
 body{
-    min-height: 80vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     background: #FF0099;  /* fallback for old browsers */
@@ -7,34 +13,22 @@ body{
     background: linear-gradient(to right, #493240, #FF0099); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-#header{
+header{
     background: #bdc3c7;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-#index, #upcomingEvents, #pastEvents, #contact, #stats{
+main{
     width: 100%;
-    min-height: 100vh;
-    max-height: max-content;
+    min-height: 79.1vh;
 }
+
 
 .card > img {
     width: 287px;
     height: 12rem;
     object-fit: cover;
-}
-
-.titulo-table{
-    font-size: 1.5rem;
-}
-
-.subtitle-table{
-    font-weight: 500;
-}
-
-.td-vacio{
-    padding: 1rem!important;
 }
 
 .nav-link:hover{
@@ -69,14 +63,39 @@ body{
 /* 
 MEDIA QUERIES
 */
+@media screen and (min-width: 374px){
+    main{
+        min-height: 78.9vh;
+    }
+}
+
+@media screen and (min-width: 424px){
+    main{
+        min-height: 78.7vh;
+    }
+    #contenedor-checkbox{
+        flex-direction: row!important;
+        justify-content: space-between!important;
+        flex-wrap: wrap;
+    }
+}
+
 @media screen and (min-width: 767px){
-    #contenedor-tabla, #main-contacto{
+    #main-contacto{
         gap: 3rem!important;
     }
 
     #contenedor-details{
         width: 60%;
     }
+    main{
+        min-height: 78.2vh;
+    }
+
+    #contenedor-tablas{
+        width: 85%;
+    }
+    
 }
 
 @media screen and (min-width: 1023px){
@@ -85,7 +104,6 @@ MEDIA QUERIES
         width: 85%;
     }
 
-
     #contenedor-contact{
         width: 50%!important;
     }
@@ -93,8 +111,12 @@ MEDIA QUERIES
     #contenedor-details{
         width: 80%;
         flex-direction: row!important;
-        padding: 2rem!important;
+        padding: 1.2rem!important;
         gap: 2rem!important;
+    }
+
+    main{
+        min-height: 76.65vh;
     }
 }
 
@@ -111,6 +133,15 @@ MEDIA QUERIES
     #contenedor-details{
         width: 70%;
     }
+
+    main{
+        min-height: 76.2vh;
+    }
+
+    #contenedor-tablas{
+        width: 70%;
+    }
+
 }
 
 @media screen and (min-width: 2559px){
